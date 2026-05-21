@@ -3,7 +3,25 @@ package cmd
 import "fmt"
 
 // Help prints the usage instructions and available commands.
-func Help() {
+func Help(args []string) {
+	if len(args) == 0 {
+		GeneralHelp()
+		return
+	}
+
+	command := args[0]
+	switch command {
+	case "add":
+		HelpAdd()
+	case "help":
+		HelpHelp()
+	default:
+		fmt.Println("Unknown command: ", command)
+		GeneralHelp()
+	}
+}
+
+func GeneralHelp() {
 	fmt.Println("Go Task Tracker — A simple CLI task manager")
 	fmt.Println()
 	fmt.Println("Usage:")
@@ -16,6 +34,31 @@ func Help() {
 	fmt.Println("  mark <id> [status]      Change task status (todo, in-progress, done)")
 	fmt.Println("  list [status]           List all tasks, or filter by status")
 	fmt.Println("  help                    Show this help message")
+	fmt.Println("  help [command]          Show help for a specific command")
 	fmt.Println()
-	fmt.Println("Run 'task help [command]' to learn more about a command")
+}
+
+func HelpAdd() {
+	fmt.Println("Add task")
+	fmt.Println()
+	fmt.Println("Usage:")
+	fmt.Println("  task add <description>")
+	fmt.Println()
+	fmt.Println("Examples:")
+	fmt.Println("  task add \"buy groceries\"")
+	fmt.Println("  task add buy groceries")
+	fmt.Println()
+}
+
+func HelpHelp() {
+	fmt.Println("Help")
+	fmt.Println()
+	fmt.Println("Usage:")
+	fmt.Println("  task help")
+	fmt.Println("  task help <command>")
+	fmt.Println()
+	fmt.Println("Examples:")
+	fmt.Println("  task help")
+	fmt.Println("  task help add")
+	fmt.Println()
 }
