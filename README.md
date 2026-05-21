@@ -17,26 +17,20 @@
 ### Commands
 ```sh
 $ task help
-Usage: task <command> [arguments]
+Go Task Tracker — A simple CLI task manager
+
+Usage:
+  task <command> [arguments]
 
 Commands:
-  add <task>                Add a new task
-  update <id> <task>        Update a task
-  delete <id>               Delete a task
-  done <id>                 Mark a task as done
-  start <id>          Mark a task as in progress
-  todo <id>                 Mark a task as todo
-  list                      List all tasks
-  list done                 List all tasks that are done
-  list in-progress          List all tasks that are in progress
-  list todo                 List all tasks that are todo
-  help                      Display help information
+  add <description>       Add a new task
+  update <id> <text>      Update a task description
+  delete <id>             Delete a task by ID
+  mark <id> <status>      Change task status (todo, in-progress, done)
+  list [status]           List all tasks, or filter by status
+  help                    Show this help message
 
-Flags:
-  -h, --help    help for task
-  -v, --version    version for task
-
-Type task <command> --help for more information about a command
+Run 'task help [command]' to learn more about a command
 ```
 
 ```sh

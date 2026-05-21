@@ -7,7 +7,7 @@ import (
 
 func Execute() {
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: task <command> [arguments]")
+		Help()
 		os.Exit(1)
 	}
 
@@ -17,5 +17,11 @@ func Execute() {
 	switch command {
 	case "add":
 		Add(args)
+	case "help", "-h", "--help":
+		Help()
+	default:
+		fmt.Printf("Unknown command: %s\n", command)
+		fmt.Println("Run 'task help' for usage.")
+		os.Exit(1)
 	}
 }
