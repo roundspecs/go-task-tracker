@@ -2,6 +2,7 @@ package task
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -19,6 +20,11 @@ func NewService(storage Storage) *Service {
 }
 
 func (s *Service) Add(description string) (Task, error) {
+	description = strings.Trim(description, " ")
+	if description == "" {
+		return Task{}, fmt.Errorf("description cannot be empty")
+	}
+
 	tasks, nextID, err := s.storage.Load()
 	if err != nil {
 		return Task{}, fmt.Errorf("loading data: %w", err)
