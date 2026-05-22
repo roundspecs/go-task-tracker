@@ -2,10 +2,11 @@ package cmd
 
 import (
 	"fmt"
+	"go-task-tracker/task"
 	"os"
 )
 
-func Execute() {
+func Execute(svc *task.Service) {
 	if len(os.Args) < 2 {
 		GeneralHelp()
 		os.Exit(1)
@@ -16,7 +17,7 @@ func Execute() {
 
 	switch command {
 	case "add":
-		Add(args)
+		Add(svc, args)
 	case "help", "-h", "--help":
 		Help(args)
 	default:
