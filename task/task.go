@@ -10,6 +10,15 @@ const (
 	StatusDone       Status = "done"
 )
 
+func (s Status) IsValid() bool {
+	switch s {
+	case StatusTodo, StatusDone, StatusInProgress:
+		return true
+	default:
+		return false
+	}
+}
+
 type Task struct {
 	ID          int       `json:"id"`
 	Description string    `json:"description"`

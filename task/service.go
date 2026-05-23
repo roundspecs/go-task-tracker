@@ -47,3 +47,23 @@ func (s *Service) Add(description string) (Task, error) {
 
 	return task, nil
 }
+
+func (s *Service) List(statusType *Status) ([]Task, error) {
+	tasks, _, err := s.storage.Load()
+	if err != nil {
+		return nil, fmt.Errorf("loading data: %w", err)
+	}
+
+	if statusType == nil {
+		return tasks, nil
+	}
+
+	var filteredTasks []Task = make([]Task, 0)
+	for _, t := range tasks {
+		if t.Status == *statusType {
+			filteredTasks = append(filteredTasks, t)
+		}
+	}
+
+	return filteredTasks, nil
+}

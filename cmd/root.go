@@ -18,6 +18,8 @@ func Execute(svc *task.Service) {
 	switch command {
 	case "add":
 		Add(svc, args)
+	case "list":
+		List(svc, args)
 	case "help", "-h", "--help":
 		Help(args)
 	default:
